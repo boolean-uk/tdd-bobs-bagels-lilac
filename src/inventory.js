@@ -24,7 +24,7 @@ const inventory = [
         variant: "Sesame"
     },
     {
-        sku: "COF",
+        sku: "COF", // Not shown in basket.spec probably not needed
         price: 0.99,
         name: "Coffee",
         variant: ""
@@ -46,8 +46,8 @@ const inventory = [
         price: 2.99,
         name: "Bagel Sandwich",
         variant: "Nutella",
-      }
+    }
 
 ];
 
-module.exports = inventory
+module.exports = inventory // not a class. This could be an inventory class rather than a variable

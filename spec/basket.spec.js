@@ -13,8 +13,8 @@ describe("Basket", () => {
       price: 0.49,
       name: "Bagel",
       variant: "Onion"
-  }]
-    basket.addItemToBasket('BGLO')  
+    }]
+    basket.addItemToBasket('BGLO')
     const result = basket.showBasket()
     expect(result).toEqual(expected);
   });
@@ -91,7 +91,7 @@ describe("Basket", () => {
     const result = basket.addItemToBasket('BGSE')
     expect(result).toEqual(expected);
   });
-
+  // Comment very long, could be reduced.
   it("if the user tries to add more than 5 items, the basket will be full, the overfill will be discarded and an error message will be displayed", () => {
     const expected = [
       {
@@ -125,6 +125,7 @@ describe("Basket", () => {
         variant: "Everything",
       }
     ]
+    // Repetitive. Use loop to reduce code
     basket.addItemToBasket('BGLO')
     basket.addItemToBasket('BGLP')
     basket.addItemToBasket('BGLE')
