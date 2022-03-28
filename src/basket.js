@@ -38,6 +38,16 @@ class Basket {
     return this.basket;
   }
 
+  //refactoring/adding isBasketFull
+  isBasketFull() {
+    if (this.basket.length >= this.basketSize) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  //End of refactor/method addition
+
   getBasketTotal() {
     let totalPrice = 0;
     for (let i = 0; i < this.basket.length; i++) {

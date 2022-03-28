@@ -1,4 +1,5 @@
 const Basket = require("../src/basket.js");
+const Bagel = require("../src/bagel.js");
 
 describe("Basket", () => {
   let basket;
@@ -95,6 +96,7 @@ describe("Basket", () => {
   });
 
   // Comment is too long.
+  // Instead of showing an error, we can use boolean.
   it("if the user tries to add more than 5 items, the basket will be full, the overfill will be discarded and an error message will be displayed", () => {
     const expected = [
       {
@@ -138,6 +140,23 @@ describe("Basket", () => {
     const result = basket.showBasket("BGSE");
     expect(result).toEqual(expected);
   });
+
+  // Refactoring isBasketFull()?
+  it("is basket full?", () => {
+    //set up
+    const basket = new Basket();
+    const bagel = new Bagel("BGLG");
+    //execute
+    basket.addItemToBasket("BGLO");
+    basket.addItemToBasket("BGLP");
+    basket.addItemToBasket("BGLE");
+    basket.addItemToBasket("BGLS");
+    basket.addItemToBasket("BGSE");
+    basket.addItemToBasket("BGLO");
+    const result = basket.isBasketFull();
+    expect(result).toEqual(true);
+  });
+  // End of refactoring
 
   it("a user cannot remove an item that does not exist from the basket", () => {
     const expected = "The item does not exist in your basket!";
