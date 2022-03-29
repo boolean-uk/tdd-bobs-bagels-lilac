@@ -145,7 +145,6 @@ describe("Basket", () => {
   it("is basket full?", () => {
     //set up
     const basket = new Basket();
-    const bagel = new Bagel("BGLG");
     //execute
     basket.addItemToBasket("BGLO");
     basket.addItemToBasket("BGLP");
@@ -155,6 +154,14 @@ describe("Basket", () => {
     basket.addItemToBasket("BGLO");
     const result = basket.isBasketFull();
     expect(result).toEqual(true);
+  });
+
+  it("is basket full?", () => {
+    //set up
+    const basket = new Basket();
+    //execute
+    const result = basket.isBasketFull();
+    expect(result).toEqual(false);
   });
   // End of refactoring
 
