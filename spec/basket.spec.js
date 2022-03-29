@@ -1,4 +1,5 @@
 const Basket = require("../src/basket.js");
+const Bagel = require("../src/bagel.js");
 
 describe("Basket", () => {
   let basket
@@ -145,6 +146,23 @@ describe("Basket", () => {
     expect(result).toEqual(expected);
   });
 
+  // Refactoring isBasketFull()?
+  it("is basket full?", () => {
+    //set up
+    const basket = new Basket();
+    const bagel = new Bagel("BGLG");
+    //execute
+    basket.addItemToBasket("BGLO");
+    basket.addItemToBasket("BGLP");
+    basket.addItemToBasket("BGLE");
+    basket.addItemToBasket("BGLS");
+    basket.addItemToBasket("BGSE");
+    basket.addItemToBasket("BGLO");
+    const result = basket.isBasketFull();
+    expect(result).toEqual(true);
+  });
+  // End of refactoring
+
   it("Bob's bagel manager can create baskets with larger capacity", () => {
     const expected = [
       {
@@ -216,4 +234,6 @@ describe("Basket", () => {
     const result = basket.getBasketTotal()
     expect(result).toEqual(expected);
   });
+
+
 });

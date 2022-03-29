@@ -24,7 +24,7 @@ const inventory = [
         variant: "Sesame"
     },
     {
-        sku: "COF", // Not shown in basket.spec probably not needed
+        sku: "COF", // Not shown in basket.spec
         price: 0.99,
         name: "Coffee",
         variant: ""

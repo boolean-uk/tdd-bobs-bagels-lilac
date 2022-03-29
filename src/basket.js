@@ -44,8 +44,19 @@ class Basket {
         }
         return `The total price of the items in your basket is £${Number(totalPrice.toFixed(2))}` // toFixed() hasn't been created
     }
+
+    // isBasketFull() not used as stated in domain model text
+
+    //refactoring/adding isBasketFull
+    isBasketFull() {
+        if (this.basket.length >= this.basketSize) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 };
 
-// isBasketFull() not used as stated in domain model text
+//End of refactor/method addition
 
 module.exports = Basket;
