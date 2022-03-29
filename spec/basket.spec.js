@@ -1,5 +1,6 @@
 const Basket = require("../src/basket.js");
 const Bagel = require("../src/bagel.js");
+const Receipt = require("../src/receipt.js")
 
 describe("Basket", () => {
   let basket
@@ -163,6 +164,14 @@ describe("Basket", () => {
   });
   // End of refactoring
 
+  it("basket isn't full?", () => {
+    //set up
+    const basket = new Basket();
+    //execute
+    const result = basket.isBasketFull();
+    expect(result).toEqual(false);
+  });
+
   it("Bob's bagel manager can create baskets with larger capacity", () => {
     const expected = [
       {
@@ -235,5 +244,10 @@ describe("Basket", () => {
     expect(result).toEqual(expected);
   });
 
+  it("Printing a receipt", () => {
+    const date = new Date()
+    const receipt = new getReceipt("===============\n", totalPrice(), date)
+    expect(getReceipt).toEqual("===============\n", totalPrice(), date);
+  })
 
 });

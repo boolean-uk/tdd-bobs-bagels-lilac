@@ -1,8 +1,10 @@
 const inventory = require("./inventory.js");
+const Receipt = require("../src/receipt.js")
 class Basket {
     constructor() {
         this.basket = [];
         this.basketSize = 5;
+        this.receipt = new Receipt();
     }; // Only one class used
     // this.price could be used in constructor 
 
@@ -54,6 +56,10 @@ class Basket {
         } else {
             return false;
         }
+    }
+
+    getReceipt() {
+        return this.receipt.getReceipt(this.basket, this.totalPrice())
     }
 };
 
