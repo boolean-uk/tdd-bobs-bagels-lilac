@@ -1,4 +1,6 @@
 const Basket = require("../src/basket.js");
+const Bagel = require("../src/bagel.js");
+const Receipt = require("../src/receipt.js")
 
 describe("Basket", () => {
   let basket
@@ -13,8 +15,8 @@ describe("Basket", () => {
       price: 0.49,
       name: "Bagel",
       variant: "Onion"
-  }]
-    basket.addItemToBasket('BGLO')  
+    }]
+    basket.addItemToBasket('BGLO')
     const result = basket.showBasket()
     expect(result).toEqual(expected);
   });
@@ -91,7 +93,7 @@ describe("Basket", () => {
     const result = basket.addItemToBasket('BGSE')
     expect(result).toEqual(expected);
   });
-
+  // Comment very long, could be reduced.
   it("if the user tries to add more than 5 items, the basket will be full, the overfill will be discarded and an error message will be displayed", () => {
     const expected = [
       {
@@ -125,6 +127,7 @@ describe("Basket", () => {
         variant: "Everything",
       }
     ]
+    // Repetitive. Use loop to reduce code
     basket.addItemToBasket('BGLO')
     basket.addItemToBasket('BGLP')
     basket.addItemToBasket('BGLE')
@@ -142,6 +145,31 @@ describe("Basket", () => {
     basket.addItemToBasket('BGLE')
     const result = basket.removeItemFromBasket('BGLS')
     expect(result).toEqual(expected);
+  });
+
+  // Refactoring isBasketFull()?
+  it("is basket full?", () => {
+    //set up
+    const basket = new Basket();
+    const bagel = new Bagel("BGLG");
+    //execute
+    basket.addItemToBasket("BGLO");
+    basket.addItemToBasket("BGLP");
+    basket.addItemToBasket("BGLE");
+    basket.addItemToBasket("BGLS");
+    basket.addItemToBasket("BGSE");
+    basket.addItemToBasket("BGLO");
+    const result = basket.isBasketFull();
+    expect(result).toEqual(true);
+  });
+  // End of refactoring
+
+  it("basket isn't full?", () => {
+    //set up
+    const basket = new Basket();
+    //execute
+    const result = basket.isBasketFull();
+    expect(result).toEqual(false);
   });
 
   it("Bob's bagel manager can create baskets with larger capacity", () => {
@@ -215,4 +243,11 @@ describe("Basket", () => {
     const result = basket.getBasketTotal()
     expect(result).toEqual(expected);
   });
+
+  it("Printing a receipt", () => {
+    const date = new Date()
+    const receipt = new getReceipt("===============\n", totalPrice(), date)
+    expect(getReceipt).toEqual("===============\n", totalPrice(), date);
+  })
+
 });

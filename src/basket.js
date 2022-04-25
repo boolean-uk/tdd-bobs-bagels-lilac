@@ -1,10 +1,13 @@
 const inventory = require("./inventory.js");
+const Receipt = require("../src/receipt.js")
 class Basket {
     constructor() {
         this.basket = [];
         this.basketSize = 5;
-    };
-    
+        this.receipt = new Receipt();
+    }; // Only one class used
+    // this.price could be used in constructor 
+
     addItemToBasket(sku) {
         for (let i = 0; i < inventory.length; i++) {
             if (inventory[i].sku === sku && this.basket.length < this.basketSize) {
@@ -41,8 +44,25 @@ class Basket {
         for (let i = 0; i < this.basket.length; i++) {
             totalPrice += this.basket[i].price
         }
-        return `The total price of the items in your basket is £${Number(totalPrice.toFixed(2))}`
+        return `The total price of the items in your basket is £${Number(totalPrice.toFixed(2))}` // toFixed() hasn't been created
+    }
+
+    // isBasketFull() not used as stated in domain model text
+
+    //refactoring/adding isBasketFull
+    isBasketFull() {
+        if (this.basket.length >= this.basketSize) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    getReceipt() {
+        return this.receipt.getReceipt(this.basket, this.totalPrice())
     }
 };
+
+//End of refactor/method addition
 
 module.exports = Basket;
