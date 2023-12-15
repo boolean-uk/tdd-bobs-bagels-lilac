@@ -7,12 +7,19 @@ class Basket {
   }
 
   addItemToBasket (sku) {
-    for (let i = 0; i < inventory.length; i++) {
-      if (inventory[i].sku === sku && this.basket.length < this.basketSize) {
-        this.basket.push(inventory[i])
-      }
+    const product = inventory.find(item => item.sku === sku) || null
+
+    if (this.basket.length === this.basketSize) {
+      return `You cannot add more than ${this.basketSize} items to your basket!`
     }
-    return 'You cannot add more than 5 items to your basket!'
+
+    if (product) {
+      this.basket.push(product)
+
+      return this.basket
+    }
+
+    return 'Item is not exist in inventory'
   }
 
   removeItemFromBasket (sku) {
