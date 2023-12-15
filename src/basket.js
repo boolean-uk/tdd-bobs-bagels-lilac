@@ -19,6 +19,14 @@ class Basket {
         return this.basket.length >= this.basketSize
     }
 
+    changeBasketSize (newSize) {
+        if (this.basket.length < newSize) {
+            console.log("You have more items in the basket than fit the new size")
+            this.basket = this.basket.slice(0, newSize)
+        }
+        this.basketSize = newSize
+    }
+
     removeItemFromBasket(sku) {
         for (let i = 0; i < this.basket.length; i++) {
             if (this.basket[i].sku === sku) {

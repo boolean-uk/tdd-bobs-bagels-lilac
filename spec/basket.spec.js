@@ -7,6 +7,12 @@ describe("Basket", () => {
     basket = new Basket();
   });
 
+  it("changing the basket size is possible", () => {
+    expect(basket.basketSize).toEqual(5)
+    basket.changeBasketSize(4)
+    expect(basket.basketSize).toEqual(4)
+  })
+
   it("create and add a item to the basket", () => {
     const expected = [{
       sku: "BGLO",
