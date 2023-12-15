@@ -7,13 +7,17 @@ class Basket {
     };
     
     addItemToBasket(sku) {
-        if (this.basket.length >= this.basketSize) {
+        if (this.isFull()) {
             return 'You cannot add more than 5 items to your basket!'
         }
-        
+
         this.basket.push(fetchItemFromInventory(sku))
         return true
     };
+
+    isFull () {
+        return this.basket.length >= this.basketSize
+    }
 
     removeItemFromBasket(sku) {
         for (let i = 0; i < this.basket.length; i++) {
