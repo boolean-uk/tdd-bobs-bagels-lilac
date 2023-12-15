@@ -1,0 +1,12 @@
+{
+  "prettier.semi": false,
+  "prettier.bracketSpacing": true,
+  "prettier.quoteProps": "as-needed",
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false
+}
