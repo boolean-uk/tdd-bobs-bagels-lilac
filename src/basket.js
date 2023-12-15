@@ -49,13 +49,11 @@ class Basket {
   }
 
   getBasketTotal () {
-    let totalPrice = 0
-    for (let i = 0; i < this.basket.length; i++) {
-      totalPrice += this.basket[i].price
-    }
+    const sum = this.basket.map(item => item.price).reduce((a, b) => a + b, 0)
+
     return `The total price of the items in your basket is £${Number(
-      totalPrice.toFixed(2)
-    )}`
+        sum.toFixed(2)
+      )}`
   }
 
   changeBasketSize (capacity) {
