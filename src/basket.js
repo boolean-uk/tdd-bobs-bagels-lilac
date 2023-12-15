@@ -1,9 +1,9 @@
 const inventory = require('./inventory.js')
 
 class Basket {
-  constructor () {
+  constructor (capacity = 5) {
     this.basket = []
-    this.basketSize = 5
+    this.basketSize = capacity
   }
 
   addItemToBasket (sku) {
@@ -45,6 +45,16 @@ class Basket {
     return `The total price of the items in your basket is £${Number(
       totalPrice.toFixed(2)
     )}`
+  }
+
+  changeBasketSize (capacity) {
+    if (capacity <= 25) {
+      this.basketSize = capacity
+
+      return true
+    }
+
+    return 'Maximum size of basket can be 25...'
   }
 }
 

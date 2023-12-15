@@ -217,4 +217,13 @@ describe('Basket', () => {
     const result = basket.getBasketTotal()
     expect(result).toEqual(expected)
   })
+
+  it('a user can change basket size to size 25', () => {
+    expect(basket.changeBasketSize(15)).toBeTrue()
+    expect(basket.basketSize).toEqual(15)
+  })
+
+  it('a user can not change basket size bigger size than 25', () => {
+    expect(basket.changeBasketSize(26)).toEqual('Maximum size of basket can be 25...')
+  })
 })
