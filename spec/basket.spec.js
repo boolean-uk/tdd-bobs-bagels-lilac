@@ -21,6 +21,11 @@ describe('Basket', () => {
     expect(result).toEqual(expected)
   })
 
+  it('user can not add a item to the basket which not exist in inventory', () => {
+    expect(basket.showBasket()).toEqual([])
+    expect(basket.addItemToBasket('AAA')).toEqual('Item does not exist in inventory')
+  })
+
   it('a user can add more than one item to the basket', () => {
     const expected = [
       {

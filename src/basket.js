@@ -19,7 +19,7 @@ class Basket {
       return this.basket
     }
 
-    return 'Item is not exist in inventory'
+    return 'Item does not exist in inventory'
   }
 
   removeItemFromBasket (sku) {
