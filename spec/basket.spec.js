@@ -1,74 +1,76 @@
-const Basket = require("../src/basket.js");
+const Basket = require('../src/basket.js')
 
-describe("Basket", () => {
+describe('Basket', () => {
   let basket
 
   beforeEach(() => {
-    basket = new Basket();
-  });
+    basket = new Basket()
+  })
 
-  it("create and add a item to the basket", () => {
-    const expected = [{
-      sku: "BGLO",
-      price: 0.49,
-      name: "Bagel",
-      variant: "Onion"
-  }]
-    basket.addItemToBasket('BGLO')  
-    const result = basket.showBasket()
-    expect(result).toEqual(expected);
-  });
-
-  it("a user can add more than one item to the basket", () => {
+  it('create and add a item to the basket', () => {
     const expected = [
       {
-        sku: "BGLO",
+        sku: 'BGLO',
         price: 0.49,
-        name: "Bagel",
-        variant: "Onion"
+        name: 'Bagel',
+        variant: 'Onion'
+      }
+    ]
+    basket.addItemToBasket('BGLO')
+    const result = basket.showBasket()
+    expect(result).toEqual(expected)
+  })
+
+  it('a user can add more than one item to the basket', () => {
+    const expected = [
+      {
+        sku: 'BGLO',
+        price: 0.49,
+        name: 'Bagel',
+        variant: 'Onion'
       },
       {
-        sku: "BGLP",
+        sku: 'BGLP',
         price: 0.39,
-        name: "Bagel",
-        variant: "Plain"
+        name: 'Bagel',
+        variant: 'Plain'
       }
     ]
     basket.addItemToBasket('BGLO')
     basket.addItemToBasket('BGLP')
     const result = basket.showBasket()
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
-  it("a user can remove one item from the basket", () => {
+  it('a user can remove one item from the basket', () => {
     const expected = [
       {
-        sku: "BGLP",
+        sku: 'BGLP',
         price: 0.39,
-        name: "Bagel",
-        variant: "Plain"
+        name: 'Bagel',
+        variant: 'Plain'
       }
     ]
     basket.addItemToBasket('BGLO')
     basket.addItemToBasket('BGLP')
     basket.removeItemFromBasket('BGLO')
     const result = basket.showBasket()
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
-  it("a user can remove more than one item from the basket", () => {
+  it('a user can remove more than one item from the basket', () => {
     const expected = [
       {
-        sku: "BGLP",
+        sku: 'BGLP',
         price: 0.39,
-        name: "Bagel",
-        variant: "Plain"
+        name: 'Bagel',
+        variant: 'Plain'
       },
       {
-        sku: "BGLE",
+        sku: 'BGLE',
         price: 0.49,
-        name: "Bagel",
-        variant: "Everything"
+        name: 'Bagel',
+        variant: 'Everything'
       }
     ]
     basket.addItemToBasket('BGLO')
@@ -78,10 +80,10 @@ describe("Basket", () => {
     basket.removeItemFromBasket('BGLO')
     basket.removeItemFromBasket('BGLS')
     const result = basket.showBasket()
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
-  it("a user cannot add more than 5 items to their basket", () => {
+  it('a user cannot add more than 5 items to their basket', () => {
     const expected = 'You cannot add more than 5 items to your basket!'
     basket.addItemToBasket('BGLO')
     basket.addItemToBasket('BGLP')
@@ -89,40 +91,40 @@ describe("Basket", () => {
     basket.addItemToBasket('BGLS')
     basket.addItemToBasket('BGSS')
     const result = basket.addItemToBasket('BGSE')
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
-  it("if the user tries to add more than 5 items, the basket will be full, the overfill will be discarded and an error message will be displayed", () => {
+  it('if the user tries to add more than 5 items, the basket will be full, the overfill will be discarded and an error message will be displayed', () => {
     const expected = [
       {
-        sku: "BGLO",
+        sku: 'BGLO',
         price: 0.49,
-        name: "Bagel",
-        variant: "Onion"
+        name: 'Bagel',
+        variant: 'Onion'
       },
       {
-        sku: "BGLP",
+        sku: 'BGLP',
         price: 0.39,
-        name: "Bagel",
-        variant: "Plain"
+        name: 'Bagel',
+        variant: 'Plain'
       },
       {
-        sku: "BGLE",
+        sku: 'BGLE',
         price: 0.49,
-        name: "Bagel",
-        variant: "Everything"
+        name: 'Bagel',
+        variant: 'Everything'
       },
       {
-        sku: "BGLS",
+        sku: 'BGLS',
         price: 0.49,
-        name: "Bagel",
-        variant: "Sesame"
+        name: 'Bagel',
+        variant: 'Sesame'
       },
       {
-        sku: "BGSE",
+        sku: 'BGSE',
         price: 2.99,
-        name: "Bagel Sandwich",
-        variant: "Everything",
+        name: 'Bagel Sandwich',
+        variant: 'Everything'
       }
     ]
     basket.addItemToBasket('BGLO')
@@ -132,61 +134,61 @@ describe("Basket", () => {
     basket.addItemToBasket('BGSE')
     basket.addItemToBasket('BGLO')
     const result = basket.showBasket('BGSE')
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
-  it("a user cannot remove an item that does not exist from the basket", () => {
+  it('a user cannot remove an item that does not exist from the basket', () => {
     const expected = 'The item does not exist in your basket!'
     basket.addItemToBasket('BGLO')
     basket.addItemToBasket('BGLP')
     basket.addItemToBasket('BGLE')
     const result = basket.removeItemFromBasket('BGLS')
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
   it("Bob's bagel manager can create baskets with larger capacity", () => {
     const expected = [
       {
-        sku: "BGLO",
+        sku: 'BGLO',
         price: 0.49,
-        name: "Bagel",
-        variant: "Onion"
+        name: 'Bagel',
+        variant: 'Onion'
       },
       {
-        sku: "BGLP",
+        sku: 'BGLP',
         price: 0.39,
-        name: "Bagel",
-        variant: "Plain"
+        name: 'Bagel',
+        variant: 'Plain'
       },
       {
-        sku: "BGLE",
+        sku: 'BGLE',
         price: 0.49,
-        name: "Bagel",
-        variant: "Everything"
+        name: 'Bagel',
+        variant: 'Everything'
       },
       {
-        sku: "BGLS",
+        sku: 'BGLS',
         price: 0.49,
-        name: "Bagel",
-        variant: "Sesame"
+        name: 'Bagel',
+        variant: 'Sesame'
       },
       {
-        sku: "BGSE",
+        sku: 'BGSE',
         price: 2.99,
-        name: "Bagel Sandwich",
-        variant: "Everything",
+        name: 'Bagel Sandwich',
+        variant: 'Everything'
       },
       {
-        sku: "BGSS",
+        sku: 'BGSS',
         price: 4.99,
-        name: "Bagel Sandwich",
-        variant: "Sesame",
+        name: 'Bagel Sandwich',
+        variant: 'Sesame'
       },
       {
-        sku: "BGSN",
+        sku: 'BGSN',
         price: 2.99,
-        name: "Bagel Sandwich",
-        variant: "Nutella",
+        name: 'Bagel Sandwich',
+        variant: 'Nutella'
       }
     ]
     basket.basketSize = 10
@@ -198,21 +200,21 @@ describe("Basket", () => {
     basket.addItemToBasket('BGSS')
     basket.addItemToBasket('BGSN')
     const result = basket.showBasket()
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
-  it("a user can check item price before adding it to the basket", () => {
+  it('a user can check item price before adding it to the basket', () => {
     const expected = 'The price of the item is £2.99'
     const result = basket.getItemPrice('BGSN')
-    expect(result).toEqual(expected);
-  });
+    expect(result).toEqual(expected)
+  })
 
-  it("a user knows the total price of the items in their basket", () => {
+  it('a user knows the total price of the items in their basket', () => {
     const expected = 'The total price of the items in your basket is £1.37'
     basket.addItemToBasket('BGLO')
     basket.addItemToBasket('BGLP')
     basket.addItemToBasket('BGLS')
     const result = basket.getBasketTotal()
-    expect(result).toEqual(expected);
-  });
-});
+    expect(result).toEqual(expected)
+  })
+})
