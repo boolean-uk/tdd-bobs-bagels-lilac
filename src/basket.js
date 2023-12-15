@@ -1,4 +1,5 @@
-const inventory = require("./inventory.js");
+const { inventory, fetchItemFromInventory } = require("./inventory.js");
+
 class Basket {
     constructor() {
         this.basket = [];
@@ -6,13 +7,26 @@ class Basket {
     };
     
     addItemToBasket(sku) {
-        for (let i = 0; i < inventory.length; i++) {
-            if (inventory[i].sku === sku && this.basket.length < this.basketSize) {
-                this.basket.push(inventory[i]);
-            }
+        if (this.isFull()) {
+            return 'You cannot add more than 5 items to your basket!'
         }
-        return 'You cannot add more than 5 items to your basket!'
+
+        this.basket.push(fetchItemFromInventory(sku))
+        return true
     };
+
+    isFull () {
+        return this.basket.length >= this.basketSize
+    }
+
+    changeBasketSize (newSize) {
+        if (this.basket.length > newSize) {
+            console.log("You have more items in the basket than fit the new size")
+            this.basket = this.basket.splice(0, newSize)
+        }
+        this.basketSize = newSize
+        return
+    }
 
     removeItemFromBasket(sku) {
         for (let i = 0; i < this.basket.length; i++) {

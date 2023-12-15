@@ -50,4 +50,6 @@ const inventory = [
 
 ];
 
-module.exports = inventory
+const fetchItemFromInventory = ( sku ) => inventory.find(item => item.sku === sku)
+
+module.exports = { inventory, fetchItemFromInventory }
