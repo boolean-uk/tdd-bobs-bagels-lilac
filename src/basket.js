@@ -23,11 +23,14 @@ class Basket {
   }
 
   removeItemFromBasket (sku) {
-    for (let i = 0; i < this.basket.length; i++) {
-      if (this.basket[i].sku === sku) {
-        this.basket.splice(i, 1)
-      }
+    const product = this.basket.find(item => item.sku === sku) || null
+
+    if (product) {
+      this.basket = this.basket.filter(item => item.sku !== sku)
+
+      return true
     }
+
     return 'The item does not exist in your basket!'
   }
 
