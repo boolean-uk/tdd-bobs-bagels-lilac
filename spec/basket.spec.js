@@ -13,6 +13,23 @@ describe("Basket", () => {
     expect(basket.basketSize).toEqual(4)
   })
 
+  it("resizing basket to a capacity is cutting off the last items", () => {
+    basket.addItemToBasket("BGLO")
+    basket.addItemToBasket("BGLO")
+    basket.addItemToBasket("BGLP")
+    basket.addItemToBasket("BGLO")
+    basket.addItemToBasket("BGLO")
+
+    expect(basket.basket.length).toEqual(5)
+    expect(basket.isFull()).toBeTrue()
+    
+    basket.changeBasketSize(3)
+    
+    expect(basket.basket.length).toEqual(3)
+    expect(basket.basketSize).toEqual(3)
+    expect(basket.basket[4]).toBeUndefined()
+  })
+
   it("create and add a item to the basket", () => {
     const expected = [{
       sku: "BGLO",
