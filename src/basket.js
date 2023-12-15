@@ -34,12 +34,13 @@ class Basket {
     return 'The item does not exist in your basket!'
   }
 
-  getItemPrice (product) {
-    for (let i = 0; i < inventory.length; i++) {
-      if (inventory[i].sku === product) {
-        return `The price of the item is £${inventory[i].price}`
-      }
+  getItemPrice (sku) {
+    const product = inventory.find(item => item.sku === sku) || null
+
+    if (product) {
+      return `The price of the item is £${product.price}`
     }
+
     return 'The product is not available'
   }
 
